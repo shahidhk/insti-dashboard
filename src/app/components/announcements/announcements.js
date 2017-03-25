@@ -9,7 +9,17 @@
 			    templateUrl: 'app/components/announcements/announcements.html'
 			  };
 			})
-      .controller('AnnouncementCtrl', ['$scope', function($scope){
+      .controller('AnnouncementCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
+        $scope.open = function (announcement) {
+          $uibModal.open({
+            animation: true,
+            templateUrl: 'app/components/announcements/announcementModal.html',
+            size: 'lg',
+            controller: ['$scope', function ($scope) {
+              $scope.message = announcement;
+            }]
+          });
+        }
         $scope.feed = [
           {
             type: 'text-message',
